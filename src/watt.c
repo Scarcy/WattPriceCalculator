@@ -2,7 +2,7 @@
 #include <stdio.h>
 double calculatePrice(int watt, int timer, double pris) {
   double total;
-  total = ((float)watt / 1000) * (timer * pris);
+  total = (watt / 1000.0) * (timer * pris);
   return total;
 }
 int main() {
@@ -10,11 +10,20 @@ int main() {
   int timer;
   double pris;
   printf("Hvor mye watt bruker enheten? ");
-  scanf("%d", &watt);
+  if (scanf("%d", &watt) != 1) {
+    printf("Du må skrive inn et tall\n");
+    return 1;
+  };
   printf("Hva er KWh prisen(NOK)? ");
-  scanf("%lf", &pris);
+  if (scanf("%lf", &pris) != 1) {
+    printf("Du må skrive inn et tall\n");
+    return 1;
+  };
   printf("Hvor mange timer i døgnet brukes enheten? ");
-  scanf("%d", &timer);
+  if (scanf("%d", &timer) != 1) {
+    printf("Du må skrive inn et tall\n");
+    return 1;
+  }
 
   double total = calculatePrice(watt, timer, pris);
   printf("- - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n");
